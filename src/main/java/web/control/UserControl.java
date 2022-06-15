@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web.models.User;
+import web.servise.UserSer;
 import web.servise.UserServise;
 
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.List;
 @Controller
 public class UserControl {
 
-    private final UserServise userServise;
+    private final UserSer userServise;
     @Autowired
-    public UserControl(UserServise userServise){
+    public UserControl(UserSer userServise){
         this.userServise=userServise;
     }
 

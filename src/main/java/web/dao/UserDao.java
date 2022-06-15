@@ -30,9 +30,7 @@ public class UserDao implements UserDaoInterface {
 
     @Override
     public List<User> findAll() {
-        String jpql = "SELECT u FROM User u";
-        TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
-        return query.getResultList();
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override
