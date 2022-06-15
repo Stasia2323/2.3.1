@@ -31,7 +31,7 @@ public class UserDao implements UserDaoInterface {
     @Override
     @Transactional
     public List<User> findAll() {
-        return entityManager.createQuery("from User", User.class).getResultList();
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override
