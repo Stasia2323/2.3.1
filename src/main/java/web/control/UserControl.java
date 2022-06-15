@@ -54,7 +54,7 @@ public class UserControl {
 
     @PostMapping("/user-update")
     public String uddateUser(User user) {
-        userServise.save(user);
+        userServise.update(user);
         return "redirect:/users";
     }
 

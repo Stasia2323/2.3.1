@@ -17,13 +17,11 @@ public class UserDao implements UserDaoInterface {
     private EntityManager entityManager;
 
     @Override
-    @Transactional
     public void save(User user) {
         entityManager.persist(user);
     }
 
     @Override
-    @Transactional
     public User update(User user) {
         return entityManager.merge(user);
     }
