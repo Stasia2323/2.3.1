@@ -33,7 +33,7 @@ public class DBConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
+        em.setDataSource(getDataSource());
         em.setPackagesToScan(env.getRequiredProperty("db.entity.packege"));
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(getHibernateProterties());
@@ -51,7 +51,7 @@ public class DBConfig {
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource getDataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(env.getRequiredProperty("db.driver"));
         ds.setUrl(env.getRequiredProperty("db.url"));

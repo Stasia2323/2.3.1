@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web.models.User;
-import web.servise.UserSer;
 import web.servise.UserServise;
 
 import java.util.List;
@@ -17,15 +17,15 @@ import java.util.List;
 @Transactional
 public class UserControl {
 
-    private final UserSer userServise;
+    private final UserServise userServise;
     @Autowired
-    public UserControl(UserSer userServise){
+    public UserControl(UserServise userServise){
         this.userServise=userServise;
     }
 
     @GetMapping("/users")
-    public String findAll(Model model) {
-        List<User> users = userServise.findAll();
+    public String getAll(Model model) {
+        List<User> users = userServise.getAll();
         model.addAttribute("users", users);
         return "user-list";
     }
@@ -41,15 +41,15 @@ public class UserControl {
         return "redirect:/users";
     }
 
-    @GetMapping("/user-delete/{id}")
+    @DeleteMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id) {
         userServise.delete(id);
         return "redirect:/users";
     }
 
     @GetMapping("/user-update/{id}")
-    public String updateUserForm(@PathVariable("id") Integer id, Model model) {
-        User user=userServise.findById(id);
+    public String getUserById(@PathVariable("id") Integer id, Model model) {
+        User user=userServise.getUserById(id);
         model.addAttribute("user", user);
         return "user-update";
     }
